@@ -45,7 +45,7 @@ int main(void) {
         renderer_prepare();
         shader_program_start(&static_program);
         render(&e, &static_program);
-        shader_program_stop(&static_program);
+        shader_program_stop();
         // Game logic
         // e.position[0] += 0.0001f;
         display_update();

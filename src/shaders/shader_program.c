@@ -82,7 +82,7 @@ void shader_program_start(ShaderProgram *sp) {
     glUseProgram(sp->program);
 }
 
-void shader_program_stop() {
+void shader_program_stop(void) {
     glUseProgram(0);   
 }
 

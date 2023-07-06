@@ -14,7 +14,7 @@ ShaderProgram create_shader_program(
     void (*bind_attributes)(ShaderProgram *sp),
     void (*get_all_uniform_locations)(ShaderProgram *sp));
 void shader_program_start(ShaderProgram *sp);
-void shader_program_stop();
+void shader_program_stop(void);
 void shader_program_cleanup(ShaderProgram *sp);
 void bind_attribute(ShaderProgram *sp, u32 attribute, const char *name);
 
