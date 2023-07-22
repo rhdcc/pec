@@ -4,12 +4,14 @@
 #include "renderer/renderer.h"
 #include "shaders/shader_program.h"
 #include "entities/entity.h"
+#include "cglm/cglm.h"
 
 void static_shader_callback(ShaderProgram *sp) {
     bind_attribute(sp, 0, "a_position");
 }
 
 void static_get_all_uniforms(ShaderProgram *sp) {
+    // TODO: Cache uniform locations for speed
 }
 
 int main(void) {
@@ -35,20 +37,19 @@ int main(void) {
         vertices, sizeof(vertices)/sizeof(vertices[0]));
     Entity e = {
         .model = model,
-        .rx = 0.f, .ry = 0.f, .rz = 0.f, .scale = 1.f
+        .rx = 0.f, .ry = 0.f, .rz = 0.f, .scale = 50.f,
+        .position = { 640.f, 360.f, 0.f }
     };
-    e.position[0] = 0;
-    e.position[1] = 0;
-    e.position[2] = 0;
-    
+
+    Camera camera = camera_create(GLM_VEC3_ZERO, 1280, 720);
     while(!display_should_close()) {
         renderer_prepare();
         shader_program_start(&static_program);
-        render(&e, &static_program);
+        render(&e, &static_program, &camera);
         shader_program_stop();
-        // Game logic
-        // e.position[0] += 0.0001f;
         display_update();
+
+        e.rz += 0.001f;
     }
 
     shader_program_cleanup(&static_program);

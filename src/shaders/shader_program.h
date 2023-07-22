@@ -1,8 +1,8 @@
 #ifndef SHADER_PROGRAM_H
 #define SHADER_PROGRAM_H
 
-#include "external/linmath.h"
 #include "utils/defines.h"
+#include "cglm/cglm.h"
 
 typedef struct {
     void *bind_attributes;
@@ -20,6 +20,6 @@ void bind_attribute(ShaderProgram *sp, u32 attribute, const char *name);
 
 void set_uniform_float(ShaderProgram *sp, const char *name, f32 v);
 void set_uniform_v3(ShaderProgram *sp, const char *name, vec3 v);
-void set_uniform_m4(ShaderProgram *sp, const char *name, mat4x4 m);
+void set_uniform_m4(ShaderProgram *sp, const char *name, mat4 m);
 
 #endif // SHADER_PROGRAM_H

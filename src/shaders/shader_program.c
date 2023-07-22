@@ -87,7 +87,7 @@ void shader_program_stop(void) {
 }
 
 void shader_program_cleanup(ShaderProgram *sp) {
-    shader_program_stop(sp);
+    shader_program_stop();
     glDetachShader(sp->program, sp->vertex);
     glDetachShader(sp->program, sp->fragment);
     glDeleteShader(sp->vertex);
@@ -107,6 +107,6 @@ void set_uniform_v3(ShaderProgram *sp, const char *name, vec3 v) {
     glUniform3fv(glGetUniformLocation(sp->program, name), 1, v);
 }
 
-void set_uniform_m4(ShaderProgram *sp, const char *name, mat4x4 m) {
-    glUniformMatrix4fv(glGetUniformLocation(sp->program, name), 1, GL_FALSE, m[0]); // TODO: Transpose matrices because linmath.h defines matrices in column major format
+void set_uniform_m4(ShaderProgram *sp, const char *name, mat4 m) {
+    glUniformMatrix4fv(glGetUniformLocation(sp->program, name), 1, GL_FALSE, m[0]);
 }

@@ -22,7 +22,7 @@ void display_create(s32 width, s32 height) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    GLFWwindow *window = glfwCreateWindow(width, height, "Hello Window", NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(width, height, "pec", NULL, NULL);
     display.window = window;
     if(!window) {
         const char *desc;
