@@ -1,10 +1,13 @@
 #include "utils/defines.h"
+#include "utils/log.h"
 #include "renderer/display.h"
 #include "renderer/loader.h"
 #include "renderer/renderer.h"
 #include "shaders/shader_program.h"
 #include "engine/entity.h"
 #include "cglm/cglm.h"
+
+#define TICK_RATE 60
 
 void static_shader_callback(ShaderProgram *sp) {
     bind_attribute(sp, 0, "a_position");
@@ -42,14 +45,28 @@ int main(void) {
     };
 
     Camera camera = camera_create(GLM_VEC3_ZERO, 1280, 720);
+
+    f64 last_time = glfwGetTime();
+    f64 delta_accum = 0;
     while(!display_should_close()) {
+        f64 current_time = glfwGetTime();
+        if(current_time == 0) {
+            LOG_FATAL("Failed to get current system time.\n");
+            break;
+        }
+        delta_accum += (current_time - last_time) * TICK_RATE;
+        last_time = current_time;
+
+        while(delta_accum >= 1.0) {
+            e.rz += 0.05f;
+            delta_accum -= 1.0;
+        }
+
         renderer_prepare();
         shader_program_start(&static_program);
         render(&e, &static_program, &camera);
         shader_program_stop();
         display_update();
-
-        e.rz += 0.001f;
     }
 
     shader_program_cleanup(&static_program);
