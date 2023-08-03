@@ -3,7 +3,7 @@
 #include "renderer/loader.h"
 #include "renderer/renderer.h"
 #include "shaders/shader_program.h"
-#include "entities/entity.h"
+#include "engine/entity.h"
 #include "cglm/cglm.h"
 
 void static_shader_callback(ShaderProgram *sp) {

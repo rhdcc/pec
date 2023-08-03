@@ -1,4 +1,4 @@
-#include "entities/entity.h"
+#include "engine/entity.h"
 
 void create_model_transform(mat4 model, Entity *entity) {
     glm_mat4_identity(model);

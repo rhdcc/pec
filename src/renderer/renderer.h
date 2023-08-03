@@ -2,7 +2,7 @@
 #define RENDERER_H
 
 #include "shaders/shader_program.h"
-#include "entities/entity.h"
+#include "engine/entity.h"
 #include "renderer/models.h"
 #include "engine/camera.h"
 
